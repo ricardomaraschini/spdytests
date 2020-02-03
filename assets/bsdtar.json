@@ -1,0 +1,32 @@
+{
+	"apiVersion": "v1",
+	"kind": "Pod",
+	"metadata": {
+		"name": "bsdtar",
+		"labels": {
+			"name": "bsdtar"
+		}
+	},
+	"spec": {
+		"restartPolicy": "Never",
+		"containers": [
+			{
+				"name": "bsdtar",
+				"image": "quay.io/rmarasch/bsdtar:latest",
+				"stdin": true,
+				"stdinOnce": true,
+				"command": [
+					"/usr/bin/bsdtar",
+					"-v",
+					"-x",
+					"-o",
+					"-m",
+					"-f",
+					"-",
+					"-C",
+					"/tmp"
+				]
+			}
+		]
+	}
+}

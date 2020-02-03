@@ -1,0 +1,29 @@
+{
+	"apiVersion": "v1",
+	"kind": "Pod",
+	"metadata": {
+		"name": "spdytests",
+		"labels": {
+			"name": "spdytests"
+		}
+	},
+	"spec": {
+		"containers": [
+			{
+				"name": "spdytests",
+				"imagePullPolicy": "Always",
+				"image": "quay.io/rmarasch/spdytests:latest",
+				"ports": [
+					{
+						"containerPort": 8080
+					}
+				],
+				"command": [
+					"/bin/sh",
+					"-c",
+					"/usr/local/bin/spdytests &\nsocat -d -d tcp-l:8080,fork,reuseaddr tcp:127.0.0.1:8181\n"
+				]
+			}
+		]
+	}
+}
